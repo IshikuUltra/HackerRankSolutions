@@ -1,10 +1,17 @@
-# write a program which given starting index prints if the preceeding numbers are multiples of k
-def isMultiple(k, arr):
-    index = int(input('Enter a index:' )) #index should be relative to number you want to see is multiple when added to preceeding
-    for i in range(index + 1, len(arr)): # does len return a zero indexed val?
-        print(str(arr[index]) + ' + ' + str(arr[i]) + ' % ' + str(k) + ' = ' + str((arr[index] + i) % k == 0))
+#Python solution to non-divisable subset
 
-k = 4
-arr = [12,10,24,19]
-isMultiple(k, arr)
+k = 3
+numbers = [278, 576, 496, 727, 410, 124, 338, 149, 209, 702, 282 ,718, 771, 575, 436] # 1,7,4
 
+counts = [0] * k #populate an array of len(k)
+for number in numbers:
+    counts[number % k] += 1
+
+count = max(counts[0],1)
+for i in range(1, k//2+1):
+    if i != k - i:
+        count += max(counts[i], counts[k-i])
+if k % 2 == 0: 
+    count += 1
+
+print(count)

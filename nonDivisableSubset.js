@@ -1,25 +1,43 @@
 // Hacker Rank: non-divisable subset (difficulty: medium)
+// Create the largest sub list of S -> S' that when and two integers in S' summed are not a multiple of 'K'
+'use strict'
 
+//IT WORKS BUT ITS SLOW AF
 function nonDivisibleSubset(k, s) { 
-    let sPrime = []; //what to do when sPrime starts to grow in size eg. sPrime.length = 100
-    for (let i=0; i <= s.length-1; i++) { //.length returns a non-zero indexed count of 's'. And loops need to start at 0 because arrays are zero indexed
-	    for (let x=i+1; x <= s.length-1; x++) {  
-            if ((s[i] + s[x]) % k == 0) { // add two lists too sPrime, one containing s[i] and [...s] but not s[x], the other containing s[i] and [...s] but not s[i]
-            //the loops need to by dynamic and switch to the s'[0] and s'[1] respectively 
-            // remember to update i and x respectively to their respectively
-                let si = [s[i],...s];
-                si.splice(si.indexOf(s[x]),1);
-                let sx = [s[x],...s];
-                sx.splice(sx.indexOf(s[i]),1);
-                sPrime.push(si, sx);
-                break;
-            } continue;
-            }
-        }
+    if (k === 1) {
+        return 1;
     };
-    return sPrime;
-}
 
-const k = 4;
-let s = [19,10,12,10,24,25,22]; // how to handle repeat numbers?
-console.log(nonDivisibleSubset(k, s))
+    let mode = (arr, s1, s2) => { 
+        let modes = {s1:0, s2:0}; 
+        arr.forEach((e) => {if(e == s1){modes.s1 +=1 }; if(e==s2){modes.s2 += 1}}); 
+
+        if (modes.s1 > modes.s2) {
+            return s2;
+        } else if (modes.s2 > modes.s1) {
+            return s1
+        } else {
+            return Math.max(...[s1,s2]); 
+        }
+    };
+    
+    let remainders = [];
+    s.forEach((e) => {remainders[remainders.length] = (e % k)})
+    console.log(remainders);
+    // remainders.length == s.length && console.log(true); 
+    for (let i=0; i < remainders.length; i++) { 
+        for (let j=1; j < remainders.length; j++) { // running n-1 everytime i increments
+            if ((remainders[i] + remainders[j]) === k ) { // THESE ARE THE REMAINDER VALUES YOU IDIOT
+                let tooRemove = mode(remainders, remainders[i], remainders[j]);
+                let index = remainders.indexOf(tooRemove);
+                remainders.splice(index, 1)
+            } continue;
+        }
+    }
+    return remainders.length;
+};
+
+const k = 1;
+let s = [1, 2, 3, 4, 5]; // return: 1
+let final = nonDivisibleSubset(k, s);
+console.log(final)
