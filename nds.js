@@ -16,7 +16,7 @@ function nds (s, k) {
         for(let j=1; j < r.length; j++) {
             if(r[i] + r[j] === k) { 
                 //keep the one with the higher frquency 
-                frequency[r[i]] > frequency[r[j]] ? r.splice(r.indexOf(r[i]),1) : r[i] > r[j] ? r.splice(r.indexOf(r[j]),1) : r.splice(r.indexOf(r[i]),1);
+                frequency[r[i]] > frequency[r[j]] ? r.splice(r.indexOf(r[j]),1) : r[i] > r[j] ? r.splice(r.indexOf(r[j]),1) : r.splice(r.indexOf(r[i]),1);
             }
         }
     }
