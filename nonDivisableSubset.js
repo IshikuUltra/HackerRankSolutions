@@ -10,8 +10,8 @@ function nonDivisibleSubset(k, s) {
     values[item % k] += 1;
     return target;
   }, 0); 
-  //console.log(values); // [2,3,3,3]
 
+                //Array.from has no meaning, can replicate with for i too (k+1) / 2 -1
   for (let i of Array.from({ length: (k + 1) / 2 -1 }, (value, index) => index + 1)) { // what does the length: operation mean?
     result += Math.max(values[i], values[k - i]);
   } 
