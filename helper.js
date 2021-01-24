@@ -1,5 +1,10 @@
-let arr = [1,2,3,4,5,6];
-delete arr[0]
-// arr.splice(0,1)
-console.log(arr)
+// Advanced logic gates
+let values = [2,2,3,1]
+let k = 4;
+let result = 0;
 
+// console.log(!(k % 2) && !!values[k / 2] && (result += 1)) // 
+
+values[0] && (result += 1);
+    
+console.log(result)
