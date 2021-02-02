@@ -14,6 +14,7 @@ function nds (s, k) {
     // instead of a double loop he is comparing both sides... 
     // the Array constructor is temporary and only needs to be half of (values.length -1) because it doesn't need evaluate values[-1] since it will never be k remainder
     // it is comparing against remainder pairs of k eg. k = 4 -> remainderPairs = (1,3), (2,2) -> values uses indecies as the remainder pair numbers
+    //THIS IS GOD LEVEL CODE >>>
     for (let i of Array.from({ length: (k + 1) / 2 -1 }, (value, index) => index + 1)) {// say k is 13... then Array = [1,2,3,4,5,6]
       console.log(i, k-i)
       result += Math.max(values[i], values[k - i]); // This is next level...
